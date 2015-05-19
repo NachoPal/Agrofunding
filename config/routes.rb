@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:registration, :password]
 
-  devise_for :farmers, skip: [:password, :sessions], except: :new
+  devise_for :farmers, skip: [:password, :sessions]
 
   devise_for :agrofunders, skip: [:password, :sessions]
 
