@@ -32,6 +32,9 @@ gem 'rgeo-shapefile'
 
 gem 'faker', '~> 1.4.3'
 
+gem 'devise'
+
+gem "paperclip", "~> 4.2"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
