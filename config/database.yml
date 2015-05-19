@@ -23,6 +23,9 @@ default: &default
 
 development:
   <<: *default
+  username: nacho
+  adapter: postgis
+  host: localhost
   database: agrofunding_development
 
   # The specified database role being used to connect to postgres.
@@ -81,5 +84,5 @@ test:
 production:
   <<: *default
   database: agrofunding_production
-  username: agrofunding
+  username: nacho
   password: <%= ENV['AGROFUNDING_DATABASE_PASSWORD'] %>
