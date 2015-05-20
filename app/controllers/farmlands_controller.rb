@@ -5,7 +5,7 @@ class FarmlandsController < ApplicationController
 	end
 
 	def index
-
+		
 	end
 	
 end

@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+*{
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+#map { height: 400px; width: 80%; float:left;}
+#list { height: 400px; width: 20%; float: left; overflow-y: scroll;}
+#properties {clear:both;}
+.leaflet-control-attribution{ display:none;}
+.geojson-list-group{ width: 100%;}

@@ -5,7 +5,7 @@ class FarmersController < ApplicationController
 	end
 
 	def admin
-
+		
 	end
 
 	def edit

@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: [:registration, :password]
 
-  devise_for :farmers, skip: [:password, :sessions]
+  devise_for :farmers, skip: [:password, :sessions],
+              :controllers => {:registrations =>"registrations"}
 
-  devise_for :agrofunders, skip: [:password, :sessions]
+  devise_for :agrofunders, skip: [:password, :sessions],
+             :controllers => {:registrations =>"registrations"}
 
   get "/farmer/:id" => "farmers#show", as: :farmer
   get "/farmer/:id/farmland/:farm_id" => "farmlands#show", as: :farmer_farmland
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   get "/agrofunder/:id/admin" =>"agrofunders#admin", as: :agrofunder_admin
   get "/agrofunder/:id/profile" =>"agrofunders#edit", as: :agrofunder_profile
   put "/agrofunder/:id" => "agrofunders#update"
+
+  get "/maps" => "maps#index"
 
   resources :subscriptions, except: :index
 

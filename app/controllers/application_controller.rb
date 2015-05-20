@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
  #  	current_user_path
 	# end
 
+  
+
   def resource_name
     :agrofunder
   end
