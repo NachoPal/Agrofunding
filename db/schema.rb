@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519102202) do
+ActiveRecord::Schema.define(version: 20150521122318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,16 @@ ActiveRecord::Schema.define(version: 20150519102202) do
   add_index "farmlands", ["lonlat"], :name => "index_farmlands_on_lonlat", :spatial => true
 
   create_table "fundings", force: true do |t|
-    t.integer  "user_id"
+    t.float    "price_disccount"
+    t.string   "frecuency"
+    t.integer  "agrofunder_id"
     t.integer  "farmland_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "fundings", ["agrofunder_id"], :name => "index_fundings_on_agrofunder_id"
   add_index "fundings", ["farmland_id"], :name => "index_fundings_on_farmland_id"
-  add_index "fundings", ["user_id"], :name => "index_fundings_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
