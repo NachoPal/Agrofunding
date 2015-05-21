@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable#, :validatable
 
-  has_many :fundings
-	has_many :farmlands, through: :fundings
+  
+	#has_many :farmlands, as: :farmer
 
 
-
-	scope :farmers, -> { where(type: 'Farmer') } 
-	scope :agrofunders, -> { where(type: 'Agrofunder') }
+	
+	# scope :farmers, -> { where(type: 'Farmer') } 
+	# scope :agrofunders, -> { where(type: 'Agrofunder') }
 
 	#delegate :lions, :meerkats, :wild_boars, to: :animals
 end

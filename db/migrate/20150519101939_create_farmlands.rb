@@ -9,7 +9,8 @@ class CreateFarmlands < ActiveRecord::Migration
       t.string :product
       t.float :price
       t.boolean :eco
-      t.string :user_id
+      #t.integer :farmer_id,
+      t.belongs_to :farmer, index: true
       t.string :usage
       t.date :period_start
       t.date :period_end

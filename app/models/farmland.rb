@@ -1,7 +1,4 @@
 class Farmland < ActiveRecord::Base
 
-	has_many :fundings
-	has_many :users, through: :fundings
-
-	has_many :subscriptions
+	belongs_to :farmer, -> { where type: "Farmer"}, inverse_of: :farmlands, class_name: "Farmer"
 end
