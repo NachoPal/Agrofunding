@@ -98,6 +98,10 @@ class RegistrationsController < Devise::RegistrationsController
         "/"
       end
     end
+
+    
+
+end
   
 
   # The path used after sign up for inactive accounts.

@@ -8,20 +8,6 @@
 </head>
 <body>
 	<%= render "/shared/menu_top" %>
- 	
- 	<section class="container clearfix">
-
-		<section class="content">
-			<%= render "/shared/title" %>
-			<section class="info">
-				<%= yield %>
-			</section> 
-		</section>
-
-		<%= render "/shared/map" %>
-
-	</section>
-	
-	<%= render "/shared/footer" %>
+	<%= yield %>
 </body>
 </html>
