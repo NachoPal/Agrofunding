@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
-  get "/" => "sites#home"
+  get "/" => "sites#home", as: :root
 
-  devise_for :users, skip: [:registration, :password]
+  devise_for :users, skip: [:registration, :password],
+              :controllers => {:sessions =>"sessions"}
 
   devise_for :farmers, skip: [:password, :sessions],
               :controllers => {:registrations =>"registrations"}

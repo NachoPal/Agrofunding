@@ -1,3 +1,125 @@
 <section id="map">
 
+	
+
+     <div id="list"></div>
+     <div id="map" ></div>
+     <div id="properties"></div>
+
+     <script>
+      //var geoLayer
+        var map = L.map('map').setView([42.649663, -2.140518], 16);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+        {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            //zoomControl: false,
+            id: 'nachopal.cf9cd065',
+            accessToken: 'pk.eyJ1IjoibmFjaG9wYWwiLCJhIjoiM2NGMTlyQSJ9.bWIEpQg8AJcz3Yumqt-MEg'
+
+        }).addTo(map);
+
+// var myStyle = {
+//     "color": "#ff7800",
+//     "weight": 0.5,
+//     "opacity": 0.65
+// };
+
+var styling = function(feature){
+  //console.log("Entra");
+  switch (feature.properties.Producto) {
+            case 'Tomate': return {color: "#F01414"};
+            case 'Uva':   return {color: "#CED65E"};
+            case 'Vino':   return {color: "#B61256"};
+            case 'Esparrago':   return {color: "#69EDF6"};
+            case 'Pimiento':   return {color: "#8E0B0B"};
+            case 'Lechuga':   return {color: "#0FC00C"};
+            case 'Judia':   return {color: "#097007"};
+            case 'Alcachofa':   return {color: "#7A410C"};
+            case 'Zanahoria':   return {color: "#F7BA22"};
+            case 'Patata':   return {color: "#FFF926"};
+            
+        }
+        
+}
+
+//map.addControl(L.control.zoom({position:'topright'}));
+
+  //$.getJSON(map_url(), function(json) {
+    $.getJSON('/maps', function(json) {
+    console.log(json)
+    var geoLayer = L.geoJson(json,{style: styling}).addTo(map);
+    
+    map
+    .fitBounds( geoLayer.getBounds() )
+    //.setMaxBounds( geoLayer.getBounds().pad(0.5) );
+
+    var geoList = new L.Control.GeoJSONList( geoLayer, {
+      listItemBuild: function(layer) {
+        var item = L.DomUtil.create('div','');
+        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} ', layer.feature.properties);
+        return item;
+      }
+       
+    });
+
+
+   
+
+    geoList.on('item-active', function(e) {
+      $('#properties').text( JSON.stringify(e.layer.feature.properties) );
+    });
+
+    map.addControl(geoList);
+
+    var farm_list = $('.geojson-list');
+      console.log(farm_list);
+      $('#list').append(farm_list);
+    
+    });
+
+
+
+
+  
+
+// $.ajax({
+//   dataType: "json",
+//   url: "http://localhost:3000/maps",
+//   success: showMaps,
+//   error: handleError
+// });
+
+// function showMaps(data){
+//   console.log(data);
+//   geoLayer = L.geoJson(data, {style: myStyle}).addTo(map);
+//   map
+//     .fitBounds( geoLayer.getBounds() )
+//     .setMaxBounds( geoLayer.getBounds().pad(0.5) );
+// }
+
+// function handleError(){
+  
+// }
+
+
+// var geoList = new L.Control.GeoJSONList( geoLayer );
+
+// geoList.on('item-active', function(e) {
+//       $('#selection').text( JSON.stringify(e.layer.feature.properties) );
+// });
+
+// map.addControl(geoList);
+
+
+
+
+
+     </script>
+
+
+  
+
+
 </section>

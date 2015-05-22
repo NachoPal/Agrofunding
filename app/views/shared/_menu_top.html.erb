@@ -3,28 +3,45 @@
 			<nav>
 				<ul class="menu_top">
 					<li class="menu_item left" id="logo">
-						Logo
+						<%= link_to "Logo", root_path %>
 					</li>
 
 					<li class="menu_item left">
-						About
+						<%= link_to "About", root_path %>
 					</li>
 
 					<li class="menu_item left">
-						Como funciona?
+						<%= link_to "Como funciona?", root_path %>
 					</li>
 
 					<li class="menu_item left">
-						Pruebalo
+						<%= link_to "Pruebalo", root_path %>
 					</li>
 
-					<li class="menu_item right" id="user_settings">
-						Log
-					</li>
+					
+					
+					<% if current_user %>
+						
+						<li class="menu_item right" id="user_settings">
+							<%= link_to "Log Out", destroy_user_session_path %>
+						</li>
 
-					<li class="menu_item right" id="Log">
-						User
-					</li>
+						<li class="menu_item right" id="Log">
+							<% if current_user.type == "Agrofunder" %>
+								<%= link_to current_user.name, agrofunder_path(current_user.id) %>
+							<% elsif current_user.type == "Farmer" %>
+								<%= link_to current_user.name, farmer_path(current_user.id) %>
+							<%end%>
+						</li>
+
+					<%else%>
+						
+						<li class="menu_item right" id="user_settings">
+							<%= link_to "Log In", new_user_session_path %>
+						</li>
+
+					<%end%>
+
 				</ul>
 			</nav>
 		</header>

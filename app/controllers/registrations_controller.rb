@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+  layout "landing"
+  
    def update
 
     if resource_class == Farmer
@@ -108,5 +110,5 @@ end
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-end
+
 

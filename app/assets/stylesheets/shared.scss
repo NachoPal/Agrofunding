@@ -8,13 +8,28 @@ nav {
 	background-color: blue;
 	font-size: 20px;
 		
+		a {
+			text-decoration: none;
+			display: block;
+			width: 100%;
+			padding: 2vh 3vw;
+
+			&:link {
+				color: black;
+			}
+
+			&:visited {
+				color: black;
+			}
+		}
+
 		ul {
 			width: 100%;
 		}
 
 		.menu_item {
 		display: inline-block;
-		padding: 2vh 3vw;
+		//padding: 2vh 3vw;
 
 			&:hover {
 				background-color: red;
@@ -27,6 +42,13 @@ nav {
 				float: right;
 			}
 		}
+}
+
+#log_in {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 30px;
 }
 
 //=============== TITLE =====================

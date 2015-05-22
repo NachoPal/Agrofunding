@@ -12,12 +12,7 @@ class ApplicationController < ActionController::Base
 	# end
 
   def after_sign_in_path_for(resource)
-      
-        if resource_class == Farmer
-          farmer_admin_path
-        elsif resource_class == Agrofunder
-          agrofunder_admin_path
-        end
+      request.env['omniauth.origin'] || stored_location_for(resource) || farmer_admin_path(current_user.id)
     end
 
   def resource_name

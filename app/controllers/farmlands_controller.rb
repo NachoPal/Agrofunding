@@ -1,5 +1,5 @@
 class FarmlandsController < ApplicationController
-
+	layout 'farmlands'
 	def show
 
 	end
