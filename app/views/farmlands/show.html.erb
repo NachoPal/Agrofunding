@@ -1,0 +1,45 @@
+<table>
+	<tr>
+		<td>Agricultor: </td>
+		<td><%= @farmland.farmer.name %></td>
+	</tr>
+	<tr>
+		<td>Comunidad: </td>
+		<td><%= @farmland.community %></td>
+	</tr>
+	<tr>
+		<td>Municipio: </td>
+		<td><%= @farmland.municipality %></td>
+	</tr>
+	<tr>
+		<td>Región: </td>
+		<td><%= @farmland.region %></td>
+	</tr>
+	<tr>
+		<td>Producto: </td>
+		<td><%= @farmland.product %></td>
+	</tr>
+	<tr>
+		<td>Ecologico: </td>
+		<td><% @farmland.eco ? "Si".html_safe : "No".html_safe %></td>
+	</tr>
+	<tr>
+		<td>Precio por kilo/litro: </td>
+		<td><%= @farmland.price %></td>
+	</tr>
+	<tr>
+		<td>Fecha inicio temporada: </td>
+		<td><%= @farmland.period_start %></td>
+	</tr>
+	<tr>
+		<td>Fecha final temporada: </td>
+		<td><%= @farmland.period_end %></td>
+	</tr>
+</table>
+
+
+
+
+
+
+

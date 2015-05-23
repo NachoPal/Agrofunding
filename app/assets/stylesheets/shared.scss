@@ -55,9 +55,11 @@ nav {
 .title {
 	background-color: red;
 	flex: 1;
-	
-	
 
+	.text{
+		float: left;
+		width: 70%;
+	}
 }
 
 section#map {

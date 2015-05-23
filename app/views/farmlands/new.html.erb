@@ -1,0 +1,32 @@
+
+<%= form_for [@farmer, @farmland] do |f| %>
+
+	<div class="form_item">
+		<%= f.label :Nombre %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="form_item">
+		<%= f.label :Product %>
+		<%= f.text_field :product %>
+	</div>
+
+	<div class="form_item">
+		<%= f.label :Precio_por_kilo_o_litro%>
+		<%= f.text_field :price %>
+	</div>
+
+	<div class="form_item">
+		<%= f.label :Fecha_inicio_temporada %>
+		<%= f.date_field :period_start, class: "date" %>
+	</div>
+
+	<div class="form_item">
+		<%= f.label :Fecha_final_temporada%>
+		<%= f.date_field :period_end, class: "date" %>
+	</div>
+
+	<div class="form_item">	
+		<%= f.submit 'Dar de alta' %> 
+	
+<%end%>

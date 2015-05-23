@@ -1,20 +1,21 @@
 
 <!-- <h1>Bienvenido <%= @farmer.name %>!</h1> -->
+	<ul>
+		<% @farms_owned.each do |farm| %>
 
-<h2>Tus agrofunders:</h2>
-<ul>
-	<% @farms_owned.each do |farm| %>
+			<li>Tierra: <%= farm.product %> </li>
+				<ul>
+						<% farm.agrofunders.each do |agrofunder| %>
+							<li><%= agrofunder.name %> subscripcion: <%= agrofunder.frecuency_for(farm.id)%>
+									Te quedan <%= agrofunder.time_to_delivery_for(farm.id)%> 
+									dias para el envio de <%= agrofunder.amount_for(farm.id) %> Kilos
+							</li>
+						<%end%>
+				</ul>
+		<%end%>
+	</ul>
 
-		<li>Tierra: <%= farm.product %> </li>
-			<ul>
-					<% farm.agrofunders.each do |agrofunder| %>
-						<li><%= agrofunder.name %> subscripcion: <%= agrofunder.frecuency_for(farm.id)%>
-								Te quedan <%= agrofunder.time_to_delivery_for(farm.id)%> 
-								dias para el envio de <%= agrofunder.amount_for(farm.id) %> Kilos
-						</li>
-					<%end%>
-			</ul>
-	<%end%>
-</ul>
+	
+
 
 

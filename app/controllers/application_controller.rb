@@ -11,9 +11,21 @@ class ApplicationController < ActionController::Base
  #  	current_user_path
 	# end
 
+
+  def save_my_previous_url
+    # session[:previous_url] is a Rails built-in variable to save last url.
+    session[:my_previous_url] = URI(request.referer).path
+  end
+
   def after_sign_in_path_for(resource)
-      request.env['omniauth.origin'] || stored_location_for(resource) || farmer_admin_path(current_user.id)
+    #binding.pry
+      if(current_user.class == Farmer)
+        request.env['omniauth.origin'] || stored_location_for(resource) || farmer_admin_path(current_user.id)
+      #elsif(resource_class == Agrofunder)
+    elsif(current_user.class == Agrofunder)
+        request.env['omniauth.origin'] || stored_location_for(resource) || agrofunder_admin_path(current_user.id)
     end
+  end
 
   def resource_name
     :agrofunder

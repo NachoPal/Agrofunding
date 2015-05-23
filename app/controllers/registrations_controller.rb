@@ -31,7 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
       if user == :farmer
            redirect_to farmer_admin_path(@user)
       elsif user == :agrofunder
-          redirect_to farmlands_map_path
+          redirect_to agrofunder_admin_path(@user)
       end
           
 
