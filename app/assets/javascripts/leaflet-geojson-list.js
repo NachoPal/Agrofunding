@@ -17,7 +17,7 @@ L.Control.GeoJSONList = L.Control.extend({
 		collapsed: false,				//collapse panel list
 		position: 'bottomleft',			//position of panel list
 		//listLabel: 'properties.Area',	//GeoJSON property to generate items list
-		listSortBy: 'properties.Producto',				//GeoJSON property to sort items list, default listLabel
+		//listSortBy: 'properties.Producto',				//GeoJSON property to sort items list, default listLabel
 
 		listItemBuild: null,			//function list item builder
 
@@ -27,7 +27,7 @@ L.Control.GeoJSONList = L.Control.extend({
 		activeEventLayer: 'mouseover',	//event on item list that trigger the fitBounds
 		activeClass: 'active',			//css class name for active list items
 		activeStyle: {					//style for Active GeoJSON feature
-			// color:'#00f',
+			//color:'#00f',
 			// fillColor:'#fa0',
 			 weight: 0.4,
 			// opacity: 1,
@@ -45,14 +45,14 @@ L.Control.GeoJSONList = L.Control.extend({
 	initialize: function(layer, options) {
 		var opt = L.Util.setOptions(this, options || {});
 
-		this.options.listSortBy = this.options.listSortBy || this.options.listLabel;
+		//this.options.listSortBy = this.options.listSortBy || this.options.listLabel;
 
 		if(this.options.listItemBuild)
 			this._itemBuild = this.options.listItemBuild;
 
 		this._layer = layer;
 
-		console.log(opt);
+		//console.log(opt);
 	},
 
 	onAdd: function (map) {
@@ -206,16 +206,16 @@ L.Control.GeoJSONList = L.Control.extend({
 			}
 		});
 
-		layers.sort(function(a, b) {
-			var ap = that._getPath(a.feature, sortProp),
-				bp = that._getPath(b.feature, sortProp);
+		// layers.sort(function(a, b) {
+		// 	// var ap = that._getPath(a.feature, sortProp),
+		// 	// 	bp = that._getPath(b.feature, sortProp);
 
-			if(ap < bp)
-				return -1;
-			if(ap > bp)
-				return 1;
-			return 0;
-		});
+		// 	// if(ap < bp)
+		// 	// 	return -1;
+		// 	// if(ap > bp)
+		// 	// 	return 1;
+		// 	return 0;
+		// });
 
 		for (var i=0; i<layers.length; i++)
 			this._list.appendChild( this._createItem( layers[i] ) );

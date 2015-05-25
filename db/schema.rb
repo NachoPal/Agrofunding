@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523103922) do
+ActiveRecord::Schema.define(version: 20150524001953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,17 +26,15 @@ ActiveRecord::Schema.define(version: 20150523103922) do
     t.float    "price"
     t.boolean  "eco"
     t.integer  "farmer_id"
-    t.string   "usage"
     t.date     "period_start"
     t.date     "period_end"
     t.float    "geom_area"
-    t.float    "rating"
-    t.integer  "num_agrofunders"
     t.json     "geom_json"
-    t.spatial  "lonlat",          limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime "created_at",                                                               null: false
-    t.datetime "updated_at",                                                               null: false
+    t.spatial  "lonlat",       limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
     t.string   "name"
+    t.text     "description"
   end
 
   add_index "farmlands", ["farmer_id"], :name => "index_farmlands_on_farmer_id"
@@ -80,7 +78,6 @@ ActiveRecord::Schema.define(version: 20150523103922) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "description"
-    t.string   "website"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"

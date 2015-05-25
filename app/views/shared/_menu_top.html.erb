@@ -1,6 +1,6 @@
 
 		<header>
-			<nav>
+			<nav class="top">
 				<ul class="menu_top">
 					<li class="menu_item left" id="logo">
 						<%= link_to "Logo", root_path %>
@@ -27,9 +27,9 @@
 						</li>
 
 						<li class="menu_item right" id="Log">
-							<% if current_user.type == "Agrofunder" %>
+							<% if current_user.class == Agrofunder %>
 								<%= link_to current_user.name, agrofunder_path(current_user.id) %>
-							<% elsif current_user.type == "Farmer" %>
+							<% elsif current_user.class == Farmer %>
 								<%= link_to current_user.name, farmer_path(current_user.id) %>
 							<%end%>
 						</li>

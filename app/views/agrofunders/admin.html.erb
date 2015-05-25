@@ -1,1 +1,35 @@
-<h1>Hola Agrofunder <%= params[:id]%></h1>
+<div class="agrofunder_admin">
+	<% @farmlands.each do |farm| %>
+
+		<div class="farm">
+			<div class="main"><h3><%=farm.name%></h3>,<h4><%=farm.product%></h4><span>Delete</span></div>
+			<div class="info">
+				<div class="basics"><%= farm.amount_for(@agrofunder)%> Kg, a 
+														<%= farm.price %> €/kg,
+														Envio <%= farm.frecuency_for(@agrofunder) %>
+				</div>
+				<div class="delivery">Quedan <%= farm.time_to_delivery_for(@agrofunder)%> días para el envío</div>
+			</div>
+			<div class="details">
+				<table>
+					<tr>
+						<td>Agricultor:</td><td><%=farm.farmer.name %> <%=farm.farmer.surname %></td>
+					</tr>
+
+					<tr>
+						<td>Comunidad:</td><td><%=farm.community %></td>
+					</tr>
+
+					<tr>
+						<td>Municipio:</td><td><%=farm.municipality %></td>
+					</tr>
+
+					<tr>
+						<td>Region:</td><td><%=farm.region %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	<%end%>
+</div>

@@ -10,7 +10,6 @@ class FarmersController < ApplicationController
 	def admin
 
 		@farmer = current_user
-
 		@title = "Tus Tierras"
 		@buttom = "Añade una tierra"
 		@link = farmer_farmland_new_path

@@ -1,6 +1,6 @@
 
 //=============== MENU =====================
-nav {
+nav.top {
 	display: flex;
 	width: 100%;
 	//height: 70px;
@@ -44,12 +44,12 @@ nav {
 		}
 }
 
-#log_in {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	height: 30px;
-}
+// #log_in {
+// 	position: absolute;
+// 	bottom: 0;
+// 	right: 0;
+// 	height: 30px;
+// }
 
 //=============== TITLE =====================
 .title {

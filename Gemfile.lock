@@ -10,6 +10,8 @@ GEM
       activesupport (= 4.1.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-action_caching (1.1.1)
+      actionpack (>= 4.0.0, < 5.0)
     actionview (4.1.0)
       activesupport (= 4.1.0)
       builder (~> 3.1)
@@ -58,6 +60,7 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     fastercsv (1.5.5)
+    gravatar_image_tag (1.2.0)
     i18n (0.7.0)
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
@@ -160,10 +163,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
   activerecord-postgis-adapter
   byebug
   devise
   faker (~> 1.4.3)
+  gravatar_image_tag
   jbuilder (~> 2.0)
   jquery-rails
   paperclip (~> 4.2)
@@ -171,6 +176,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.1)
   rgeo
+  rgeo-activerecord
   rgeo-geojson
   rgeo-shapefile
   sass-rails (~> 5.0)

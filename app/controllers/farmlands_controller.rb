@@ -1,5 +1,5 @@
 class FarmlandsController < ApplicationController
-	layout 'application'
+	layout 'farmlands'
 	before_action "save_my_previous_url", only: [:new]
 	def new
 
@@ -35,7 +35,7 @@ class FarmlandsController < ApplicationController
 	end
 
 	def index
-		render 'index', layout: 'application'
+		#render 'index', layout: 'application'
 	end
 
 	private
