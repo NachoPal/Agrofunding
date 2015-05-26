@@ -73,7 +73,7 @@ $(document).ready(function(){
 		    var geoList = new L.Control.GeoJSONList(geoLayer,{
 		      listItemBuild: function(layer) {
 		        var item = L.DomUtil.create('div','');
-		        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} <br><a href="/subscriptions/new">Subscribirse</a>', layer.feature.properties);
+		        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} <br><a href="/fundings/new?farmland_id={Id}">Subscribirse</a>', layer.feature.properties);
 		        return item;} 
     		});
    

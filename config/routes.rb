@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   get "/" => "sites#home", as: :root
 
   devise_for :users, skip: [:registration, :password],
@@ -32,6 +33,6 @@ Rails.application.routes.draw do
   #API
   get "/maps" => "maps#index"
 
-  resources :subscriptions, except: :index
+  resources :fundings, except: :index
 
 end

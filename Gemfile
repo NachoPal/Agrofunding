@@ -39,6 +39,7 @@ gem 'devise'
 
 gem "paperclip", "~> 4.2"
 # Use Unicorn as the app server
+gem 'twitter-bootstrap-rails'
 # gem 'unicorn'
 
 # Use Capistrano for deployment

@@ -20,7 +20,7 @@ class MapsController < ApplicationController
 			end
 		end
 
-	#GER QUERY VALUES
+	#GET QUERY VALUES
 		if(params[:product] == "all")
 			product = ["Tomate", "Uva", "Vino", "Esparrago", "Pimiento", "Lechuga", "Judia", "Alcachofa", "Zanahoria", "Patata"]
 		else

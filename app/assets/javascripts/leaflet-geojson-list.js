@@ -111,7 +111,7 @@ L.Control.GeoJSONList = L.Control.extend({
 
 		L.DomEvent
 			//.disableClickPropagation(item)
-			.on(item, this.options.activeEventList, L.DomEvent.stop, this)
+			.on(item, this.options.activeEventList, this)
 			.on(item, this.options.activeEventList, function(e) {
 				
 				that._moveTo( layer );
@@ -155,7 +155,7 @@ L.Control.GeoJSONList = L.Control.extend({
 
 			if(that.options.activeListFromLayer) {
 				layer
-				.on(that.options.activeEventList)
+				.on(that.options.activeEventList, L.DomEvent.stop)
 				.on(that.options.activeEventList, function(e) {
 
 					that.fire('item-active', {layer: layer });
