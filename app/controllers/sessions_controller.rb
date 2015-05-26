@@ -1,4 +1,4 @@
 class SessionsController < Devise::SessionsController
 
-  layout "landing"
+  layout "login"
 end

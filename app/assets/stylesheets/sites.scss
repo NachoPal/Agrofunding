@@ -1,4 +1,82 @@
 // Place all the styles related to the sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#sign_in_main {
 
+	width: 30%;
+	margin: 0 auto;
+	//background: #EBECE4;
+	
+	.field {
+		margin-bottom: 1vh;
+	}
+	// input {
+	// 	display :block;
+	// 	margin: 0 auto;
+	// }
+
+	// label {
+	// 	text-align: center;
+
+	// }
+}
+
+input#agro {
+	margin-top: 12vh;
+	margin-left: 0px;
+	width: 41%;
+
+}
+
+input#farmer {
+	margin-top: 12vh;
+	width: 41%;
+
+}
+
+#sign-container {
+	position: relative;
+	height: 10066px;
+	background-color:yellow;
+
+}
+
+#sign-in-agrofunder {
+		position: absolute;
+		//background-color:#f0ad4e;
+		//background-color: #CDC0B0;
+		//background: #EBECE4;
+		background-color:  rgba(235,236,228,0.7);
+		//box-shadow: 0px 0px 10px 2px rgba(92,184,92,1);
+		width: 25%;
+		top: 29vh;
+		border-radius: 5%;
+		padding: 4vh;
+		color: black;
+		display: none;
+	}
+
+#sign-in-farmer {
+		position: absolute;
+		//background-color:#f0ad4e;
+		//background-color: #CDC0B0;
+		background-color:  rgba(235,236,228,0.4);
+		//box-shadow: 0px 0px 10px 2px rgba(92,184,92,1);
+		width: 25%;
+		top: 29vh;
+		border-radius: 5%;
+		padding: 4vh;
+		color: black;
+		
+	}
+
+#landing {
+	background: url("/farm3.jpg");
+	background-position: center;
+	position: relative;
+	height: 100vh;
+}
+
+.actions {
+	padding-left: 7.5vw;
+}

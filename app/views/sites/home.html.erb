@@ -1,70 +1,77 @@
-<div id="sign_in_main">
-
-  <div id="sign_in_agrofunder">
-    <h2>Sign Up Agrofunder</h2>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <% if @validatable %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up" %>
-      </div>
-    <% end %>
-    <%= render "devise/shared/links" %>
-  </div>
-
+  
+  <div id="sign_in_main">
     
+    <input id="farmer" class="btn btn-primary btn-lg" type="button" value="Farmer">
+    <input id="agro" class="btn btn-primary btn-lg" type="button" value="Agrofunder">
+    
+    <div id="sign-containter">
+      
 
-    <!--================================================ -->
-  <div id="sign_in_farmer">
+      <div id="sign-in-agrofunder">
+        
+  
+        <%= form_for(resource, :html => {:class => "form-group"}, :as => resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-    <h2>Sign Up Agricultor</h2>
 
-    <%= form_for(resource2, as: resource_name2, url: registration_path(resource_name2)) do |f| %>
-      <%= devise_error_messages! %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true , :class => 'form-control'%>
+          </div>
 
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @validatable %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" , :class => 'form-control'%>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control'%>
+          </div>
+
+          <div class="actions"><br>
+            <%= f.submit "Sign up", :class => 'btn btn-success'  %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
       </div>
 
-      <div class="field">
-        <%= f.label :password %>
-        <% if @validatable %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+        
 
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
+        <!--================================================ -->
+      <div id="sign-in-farmer">
 
-      <div class="actions">
-        <%= f.submit "Sign up" %>
+        <%= form_for(resource2, :html => {:class => "form-group"}, as: resource_name2, url: registration_path(resource_name2)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true , :class => 'form-control'%>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <% if @validatable %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" , :class => 'form-control'%>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control'%>
+          </div>
+
+          <div class="actions"><br>
+            <%= f.submit "Sign up", :class => 'btn btn-success' %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
       </div>
-    <% end %>
-    <%= render "devise/shared/links" %>
+    </div>
   </div>
-</div>
+
 

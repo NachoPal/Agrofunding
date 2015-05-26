@@ -35,11 +35,12 @@ gem 'actionpack-action_caching'
 
 gem 'faker', '~> 1.4.3'
 
+gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
 
 gem "paperclip", "~> 4.2"
 # Use Unicorn as the app server
-gem 'twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
