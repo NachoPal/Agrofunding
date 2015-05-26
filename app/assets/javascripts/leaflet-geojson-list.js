@@ -2,63 +2,40 @@ $(document).ready(function(){
 (function() {
 
 L.Control.GeoJSONList = L.Control.extend({
-	//
-	//	Name					Data passed			   Description
-	//
-	//Managed Events:
-	//	item-active				{layer}                fired on 'activeEventList'
-	//
-	//Public methods:
-	//  TODO...
-	//
+	
 	includes: L.Mixin.Events,
 
 	options: {
 		collapsed: false,				//collapse panel list
 		position: 'bottomleft',			//position of panel list
-		//listLabel: 'properties.Area',	//GeoJSON property to generate items list
-		//listSortBy: 'properties.Producto',				//GeoJSON property to sort items list, default listLabel
-
 		listItemBuild: null,			//function list item builder
-
 		activeListFromLayer: true,		//enable activation of list item from layer
-
 		activeEventList: 'click',		//event on item list that trigger the fitBounds
 		activeEventLayer: 'mouseover',	//event on item list that trigger the fitBounds
-		activeClass: 'active',			//css class name for active list items
-		activeStyle: {					//style for Active GeoJSON feature
-			//color:'#00f',
-			// fillColor:'#fa0',
-			 weight: 0.4,
-			// opacity: 1,
-			fillOpacity: 0.8
+		activeClass: 'active',			
+		
+		activeStyle: {					
+			 weight: 0.9,
+			fillOpacity: 0.9
 		},
 		style: {
-			// color:'#00f',
-			// fillColor:'#08f',
-			 weight: 0.2,
-			// opacity: 1,
-			fillOpacity:0.4
+			 weight: 0.4,
+			fillOpacity:0.3
 		}
 	},
 
 	initialize: function(layer, options) {
 		var opt = L.Util.setOptions(this, options || {});
 
-		//this.options.listSortBy = this.options.listSortBy || this.options.listLabel;
-
 		if(this.options.listItemBuild)
 			this._itemBuild = this.options.listItemBuild;
 
 		this._layer = layer;
-
-		//console.log(opt);
 	},
 
 	onAdd: function (map) {
 
 		this._map = map;
-		
 		
 		var container = L.DomUtil.create('div', 'geojson-list');
 
@@ -69,8 +46,6 @@ L.Control.GeoJSONList = L.Control.extend({
 		this._initToggle();
 	
 		this._updateList();
-
-		//TODO .setMaxBounds( geoLayer.getBounds().pad(0.5) );
 
 		L.DomEvent
 			.on(container, 'mouseover', function (e) {
@@ -92,8 +67,6 @@ L.Control.GeoJSONList = L.Control.extend({
 	},
 
 	reload: function(layer) {
-
-		//TODO off events
 
 		this._layer = layer;
 
@@ -137,7 +110,7 @@ L.Control.GeoJSONList = L.Control.extend({
 		layer.itemList = item;
 
 		L.DomEvent
-			.disableClickPropagation(item)
+			//.disableClickPropagation(item)
 			.on(item, this.options.activeEventList, L.DomEvent.stop, this)
 			.on(item, this.options.activeEventList, function(e) {
 				
@@ -172,8 +145,6 @@ L.Control.GeoJSONList = L.Control.extend({
 			layers = [],
 			sortProp = this.options.listSortBy;
 
-		//TODO SORTby
-
 		this._list.innerHTML = '';
 		this._layer.eachLayer(function(layer) {
 
@@ -184,7 +155,7 @@ L.Control.GeoJSONList = L.Control.extend({
 
 			if(that.options.activeListFromLayer) {
 				layer
-				.on(that.options.activeEventList, L.DomEvent.stop)
+				.on(that.options.activeEventList)
 				.on(that.options.activeEventList, function(e) {
 
 					that.fire('item-active', {layer: layer });
@@ -206,24 +177,11 @@ L.Control.GeoJSONList = L.Control.extend({
 			}
 		});
 
-		// layers.sort(function(a, b) {
-		// 	// var ap = that._getPath(a.feature, sortProp),
-		// 	// 	bp = that._getPath(b.feature, sortProp);
-
-		// 	// if(ap < bp)
-		// 	// 	return -1;
-		// 	// if(ap > bp)
-		// 	// 	return 1;
-		// 	return 0;
-		// });
-
 		for (var i=0; i<layers.length; i++)
 			this._list.appendChild( this._createItem( layers[i] ) );
 	},
 
 	_initToggle: function () {
-
-		/* inspired by L.Control.Layers */
 
 		var container = this._container;
 
@@ -231,9 +189,8 @@ L.Control.GeoJSONList = L.Control.extend({
 		container.setAttribute('aria-haspopup', true);
 
 		if (!L.Browser.touch) {
-			L.DomEvent
-				.disableClickPropagation(container);
-				//.disableScrollPropagation(container);
+			// L.DomEvent
+			// 	.disableClickPropagation(container);
 		} else {
 			L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
 		}
@@ -261,7 +218,7 @@ L.Control.GeoJSONList = L.Control.extend({
 			}
 
 			this._map.on('click', this._collapse, this);
-			// TODO keyboard accessibility
+
 		}
 	},
 

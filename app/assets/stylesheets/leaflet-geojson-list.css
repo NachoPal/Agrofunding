@@ -1,4 +1,6 @@
- 
+.geojson-list.leaflet-control {
+	width: 100%;
+} 
 .leaflet-container .geojson-list {
 	position:relative;
 	float:left;

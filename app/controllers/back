@@ -2,25 +2,48 @@ class MapsController < ApplicationController
 
 	def index
 	
-	#INITIALIZE
 		farmlands_ids_retrieved = []
 		farmlands_in_boundary = []
 		features = []
 
-	#CHECK FIRST CALL OR NTH CALL
+		first_call?
+
+		get_query_values
+
+		create_polygon_boundaries
+
+		farmlands = Farmland.where.not(farmer_id: nil).where(product: product, eco: eco)
+												.order(params[:order][0] => params[:order][1].to_sym)
+
+		fill_geojson_features
+
+		Rails.cache.write(:ids, farmlands_ids_retrieved + Rails.cache.read(:ids))
+		
+		geo_json = {type: "FeatureCollection", features: features}
+
+    render json: geo_json
+	end
+
+
+	def first_call?
 		if(params[:init] == "true")
 				Rails.cache.write(:ids, [])
 				Rails.cache.write(:query_old, [params[:product], params[:eco], params[:order]])
 			else
-				query_new = [params[:product], params[:eco], params[:order]]
-
-			unless(query_new == Rails.cache.read(:query_old))
-				Rails.cache.write(:query_old, query_new)
-				Rails.cache.clear(:ids)
-			end
+				nth_call
 		end
+	end
 
-	#GER QUERY VALUES
+	def nth_call
+		query_new = [params[:product], params[:eco], params[:order]]
+
+		unless(query_new == Rails.cache.read(:query_old))
+			Rails.cache.write(:query_old, query_new)
+			Rails.cache.clear(:ids)
+		end
+	end
+
+	def get_query_values	
 		if(params[:product] == "all")
 			product = ["Tomate", "Uva", "Vino", "Esparrago", "Pimiento", "Lechuga", "Judia", "Alcachofa", "Zanahoria", "Patata"]
 		else
@@ -39,20 +62,15 @@ class MapsController < ApplicationController
 		boundarie_NE_lon = params[:b][1]
 		boundarie_SW_lat = params[:b][2]
 		boundarie_SW_lon = params[:b][3]
+	end
 
-	#CREATE POLYGON WITH BOUNDARIES MAP
-		map_polygon_gis = "POLYGON(("+ boundarie_NE_lon +" "+ boundarie_NE_lat +", "+
-											boundarie_SW_lon +" "+ boundarie_NE_lat +", "+
-											boundarie_SW_lon +" "+ boundarie_SW_lat +", "+
-											boundarie_NE_lon +" "+ boundarie_SW_lat +", "+
-											boundarie_NE_lon +" "+ boundarie_NE_lat +"))"
-
+	def create_polygon_boundaries
+		map_polygon_gis = "POLYGON(("+ boundarie_NE_lon +" "+ boundarie_NE_lat +", "+boundarie_SW_lon +" "+ boundarie_NE_lat +", "+boundarie_SW_lon +" "+ boundarie_SW_lat +", "+boundarie_NE_lon +" "+ boundarie_SW_lat +", "+boundarie_NE_lon +" "+ boundarie_NE_lat +"))"
+		
 		map_polygon_object = RGeo::Geos.factory.parse_wkt(map_polygon_gis)
+	end
 
-		farmlands = Farmland.where.not(farmer_id: nil).where(product: product, eco: eco)
-												.order(params[:order][0] => params[:order][1].to_sym)
-
-	#CHECK IF FARM IS CONTAINED IN BOUNDARIES AND NOT RETRIEVED YET
+	def check_farms_within_boundaries_and_not_retrieved	
 		farmlands.each do |farm|
 
 			unless(Rails.cache.read(:ids).include?(farm.id))
@@ -62,8 +80,9 @@ class MapsController < ApplicationController
 				end
 			end
 		end
+	end
 
-	#FILL GEOJSON FEATURES WITH THE SUCCEEDED FARMS
+	def fill_geojson_features
 		farmlands_in_boundary.each do |farm|
 			
 			farm.geom_json["properties"]["Producto"] = farm.product
@@ -78,14 +97,6 @@ class MapsController < ApplicationController
 
 			features << farm.geom_json
 		end
-
-	#UPDATE RAILS CACHE WITH NEW RETRIEVED FARMS
-		Rails.cache.write(:ids, farmlands_ids_retrieved + Rails.cache.read(:ids))
-	
-	#SEND GEOJSON
-		geo_json = {type: "FeatureCollection", features: features}
-
-    render json: geo_json
-	end
+	end		
 
 end

@@ -64,6 +64,7 @@ $(document).ready(function(){
 
 		    }else {
 		    	geoLayer.addData(json);
+		    	$('#list').empty();
 		    }
 		    // map
 		    // .fitBounds( geoLayer.getBounds() )
@@ -72,7 +73,7 @@ $(document).ready(function(){
 		    var geoList = new L.Control.GeoJSONList(geoLayer,{
 		      listItemBuild: function(layer) {
 		        var item = L.DomUtil.create('div','');
-		        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} ', layer.feature.properties);
+		        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} <br><a href="/subscriptions/new">Subscribirse</a>', layer.feature.properties);
 		        return item;} 
     		});
    
@@ -82,9 +83,8 @@ $(document).ready(function(){
 
 		    map.addControl(geoList);
 
-		    var farm_list = $('.geojson-list');
-		      //console.log(farm_list);
-		     $('#list').append(farm_list); 
+		    var farm_list = $('.geojson-list');    
+		    $('#list').append(farm_list); 
 
 		     console.log(geoList) 
 		     delete(geoList)  
