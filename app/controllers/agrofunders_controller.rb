@@ -1,11 +1,14 @@
+
+
 class AgrofundersController < ApplicationController
 	before_action :authenticate_user!
+	layout 'user_admin'
 	def show
 
 	end
 
 	def admin
-		
+
 		@agrofunder = current_user
 		@title = "Tus Fundings"
 		@buttom = "Buscar Tierras"

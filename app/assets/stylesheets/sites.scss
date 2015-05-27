@@ -1,7 +1,7 @@
 // Place all the styles related to the sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#sign_in_main {
+.sign_up_main {
 
 	width: 30%;
 	margin: 0 auto;
@@ -10,15 +10,6 @@
 	.field {
 		margin-bottom: 1vh;
 	}
-	// input {
-	// 	display :block;
-	// 	margin: 0 auto;
-	// }
-
-	// label {
-	// 	text-align: center;
-
-	// }
 }
 
 input#agro {
@@ -34,14 +25,7 @@ input#farmer {
 
 }
 
-#sign-container {
-	position: relative;
-	height: 10066px;
-	background-color:yellow;
-
-}
-
-#sign-in-agrofunder {
+.sign-up-agrofunder {
 		position: absolute;
 		//background-color:#f0ad4e;
 		//background-color: #CDC0B0;
@@ -56,7 +40,7 @@ input#farmer {
 		display: none;
 	}
 
-#sign-in-farmer {
+.sign-up-farmer {
 		position: absolute;
 		//background-color:#f0ad4e;
 		//background-color: #CDC0B0;
@@ -70,13 +54,13 @@ input#farmer {
 		
 	}
 
-#landing {
+.landing {
 	background: url("/farm3.jpg");
 	background-position: center;
 	position: relative;
 	height: 100vh;
 }
 
-.actions {
+.actions-up {
 	padding-left: 7.5vw;
 }

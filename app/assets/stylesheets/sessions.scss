@@ -1,0 +1,32 @@
+.sign_in_main {
+
+	width: 30%;
+	margin: 0 auto;
+	
+	.field {
+		margin-bottom: 1vh;
+	}
+}
+
+
+.log-in {
+		position: absolute;
+		background-color: white;
+		border: 1px solid #CDAA7D;
+		width: 35%;
+		top: 19vh;
+		border-radius: 5%;
+		padding: 4vh;
+		color: black;
+	}
+
+.actions-in {
+	padding-left: 12.5vw;
+}
+
+.login {
+	background-image: url('/pattern6.jpg');
+	background-position: center;
+	position: relative;
+	height: 100vh;
+}

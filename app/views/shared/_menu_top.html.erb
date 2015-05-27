@@ -23,14 +23,18 @@
 					<% if current_user %>
 						
 						<li class="menu_item right" id="user_settings">
-							<%= link_to "Log Out", destroy_user_session_path %>
+							<%= link_to "<span class='glyphicon glyphicon-log-out' aria-hidden='true'> Logout </span>".html_safe, destroy_user_session_path %>
 						</li>
 
 						<li class="menu_item right" id="Log">
 							<% if current_user.class == Agrofunder %>
-								<%= link_to current_user.name, agrofunder_path(current_user.id) %>
+								<%= link_to "<span style='color: white' class='glyphicon glyphicon-user' aria-hidden='true'> 
+								#{current_user.name}</span>".html_safe, 
+								agrofunder_admin_path(current_user.id) %>
 							<% elsif current_user.class == Farmer %>
-								<%= link_to current_user.name, farmer_path(current_user.id) %>
+								<%= link_to "<span style='color: white' class='glyphicon glyphicon-user' aria-hidden='true'> 
+								#{current_user.name}</span>".html_safe, 
+								farmer_admin_path(current_user.id) %>
 							<%end%>
 						</li>
 

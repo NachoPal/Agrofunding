@@ -30,6 +30,8 @@ gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 gem 'rgeo-shapefile'
 gem 'rgeo-activerecord'
+gem 'linguistics'
+gem 'numbers_and_words'
 #gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 

@@ -1,35 +1,56 @@
-<div class="agrofunder_admin">
-	<% @farmlands.each do |farm| %>
 
-		<div class="farm">
-			<div class="main"><h3><%=farm.name%></h3>,<h4><%=farm.product%></h4><span>Delete</span></div>
-			<div class="info">
-				<div class="basics"><%= farm.amount_for(@agrofunder)%> Kg, a 
-														<%= farm.price %> €/kg,
-														Envio <%= farm.frecuency_for(@agrofunder) %>
-				</div>
-				<div class="delivery">Quedan <%= farm.time_to_delivery_for(@agrofunder)%> días para el envío</div>
-			</div>
-			<div class="details">
-				<table>
-					<tr>
-						<td>Agricultor:</td><td><%=farm.farmer.name %> <%=farm.farmer.surname %></td>
-					</tr>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<% @farmlands.each_with_index do |farm, i| %>
 
-					<tr>
-						<td>Comunidad:</td><td><%=farm.community %></td>
-					</tr>
-
-					<tr>
-						<td>Municipio:</td><td><%=farm.municipality %></td>
-					</tr>
-
-					<tr>
-						<td>Region:</td><td><%=farm.region %></td>
-					</tr>
-				</table>
-			</div>
+  <div class="panel panel-default">
+		<div class="accordion">
+	    <div class="panel-heading" role="tab" id="heading<%=translate_number(i)%>">
+	      <h2 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=translate_number(i)%>" 
+	        	aria-expanded="false" 
+	        	aria-controls="collapse<%=translate_number(i)%>" class="collapsed" style="display: block;">
+	          <strong><%=farm.name%></strong>
+	        </a>
+	      </h2>
+	      <br>
+	      <div>
+	      	<%=farm.product%>
+	      </div>
+	    </div>
 		</div>
 
-	<%end%>
+    <div id="collapse<%=translate_number(i)%>" class="panel-collapse collapse" role="tabpanel" 
+    		aria-labelledby="heading<%=translate_number(i)%>">
+      <div class="panel-body">
+          <div class="details table-responsive">
+            <table class="table">
+            	<tr class="danger">
+                <td><b>Envio <%= farm.frecuency_for(@agrofunder) %></b></td>
+                <td><b><%= farm.time_to_delivery_for(@agrofunder)%> días para el envío
+          					<%= farm.amount_for(@agrofunder)%> Kg, a <%= farm.price %> €/kg</b>
+          			</td>
+              </tr>
+
+              <tr class="info">
+                <td><b>Agricultor:</b></td><td><%=farm.farmer.name %> <%=farm.farmer.surname %></td>
+              </tr>
+
+              <tr class="warning">
+                <td><b>Comunidad:</b></td><td><%=farm.community %></td>
+              </tr>
+
+              <tr class="warning">
+                <td><b>Municipio:</b></td><td><%=farm.municipality %></td>
+              </tr >
+
+              <tr class="warning">
+                <td><b>Region:</b></td><td><%=farm.region %></td>
+              </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <%end%>
 </div>
