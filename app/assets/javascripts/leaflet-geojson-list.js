@@ -192,7 +192,7 @@ L.Control.GeoJSONList = L.Control.extend({
 			// L.DomEvent
 			// 	.disableClickPropagation(container);
 		} else {
-			L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
+			L.DomEvent.on(container, 'click');//, L.DomEvent.stopPropagation);//Aqui
 		}
 
 		if (this.options.collapsed)

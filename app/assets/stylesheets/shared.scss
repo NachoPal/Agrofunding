@@ -61,20 +61,39 @@ nav.top {
 
 //=============== TITLE =====================
 .title {
-	background-color: red;
+	background-image: url('/pattern6.jpg');
 	flex: 1;
+	//padding-top: 3vh;
 
 	.text{
 		float: left;
-		width: 70%;
+		width: 33%;
+		padding-left: 1vw;
+		font-size: 6.5vh;
+
+
+	}
+
+	.buttom-div {
+		padding-top: 1.5vh;
+	}
+
+	.buttom{
+		float: left;
+		width: 33%;
+
+		a:link {
+			text-decoration: none;
+			color: white;
+		}
 	}
 }
 
-section#map {
-	flex: 4;
-	background-color: yellow;
-	//height:600px;
-}
+// section#map {
+// 	flex: 4;
+// 	background-color: yellow;
+// 	//height:600px;
+// }
 
 
 

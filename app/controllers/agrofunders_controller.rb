@@ -1,5 +1,3 @@
-
-
 class AgrofundersController < ApplicationController
 	before_action :authenticate_user!
 	layout 'user_admin'
@@ -11,7 +9,7 @@ class AgrofundersController < ApplicationController
 
 		@agrofunder = current_user
 		@title = "Tus Fundings"
-		@buttom = "Buscar Tierras"
+		@buttom = "Añade una Tierra"
 		@link = farmlands_map_path
 		#binding.pry
 		if(@agrofunder.farmlands.size != 0)

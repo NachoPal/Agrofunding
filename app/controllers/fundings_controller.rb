@@ -1,6 +1,6 @@
 class FundingsController < ApplicationController
 
-  layout 'landing'
+  layout 'login'
 
   def new
     @funding = Funding.new

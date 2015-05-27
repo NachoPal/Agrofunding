@@ -11,6 +11,8 @@ $(document).ready(function(){
 
  	}).addTo(map);
 
+ //var marker = L.marker([41.976140, -1.640856]).addTo(map);
+
 	var styling = function(feature){
 
 	  switch (feature.properties.Producto) {
@@ -40,8 +42,8 @@ $(document).ready(function(){
 		SWlon = bounds._southWest.lng
 		NElat = bounds._northEast.lat
 		NElon = bounds._northEast.lng
-
-		APIcall(false);
+		//$('#list').empty();
+		APIcall(true, false);
   });
 
   product = "all";
@@ -49,10 +51,22 @@ $(document).ready(function(){
   order_by = "price";
   order_direction = "asc";
 
-  APIcall(true);
+  APIcall(true, true);
 
+  $('#btn-filter').on('click',function(){
+  	
+		product = $('#product-chosen').val();
+		order_by = $('#order-chosen').val();
+		eco = $('#eco-chosen').is(":checked");
+		order_direction = $('#order-direction').val();
+		$('.map-and-list').css('flex','11');
+		$('#properties').css('flex','0');
+
+		APIcall(true, false);
+		
+	})
 	
-	function APIcall(init) {
+	function APIcall(init, first) {
 
     $.getJSON('/maps?product='+product+'&eco='+eco+'&order[]='+order_by+'&order[]='+order_direction+'&b[]='+
     					 NElat+'&b[]='+NElon+'&b[]='+SWlat+'&b[]='+SWlon+'&init='+init.toString(),
@@ -60,8 +74,11 @@ $(document).ready(function(){
     	function(json) {
 
 		    if(init) {
+		    	if(first==false) {
+		    		geoLayer.clearLayers();
+		    	}
 		    	geoLayer = L.geoJson(json,{style: styling}).addTo(map);
-
+		    	$('#list').empty();
 		    }else {
 		    	geoLayer.addData(json);
 		    	$('#list').empty();
@@ -73,12 +90,16 @@ $(document).ready(function(){
 		    var geoList = new L.Control.GeoJSONList(geoLayer,{
 		      listItemBuild: function(layer) {
 		        var item = L.DomUtil.create('div','');
-		        item.innerHTML = L.Util.template('<br>Producto: {Producto} <br>Area: {Area} <br><a href="/fundings/new?farmland_id={Id}">Subscribirse</a>', layer.feature.properties);
+		        item.innerHTML = L.Util.template(
+		        itemListHTML() , 
+		        layer.feature.properties);
 		        return item;} 
     		});
    
 		    geoList.on('item-active', function(e) {
-		      $('#properties').text( JSON.stringify(e.layer.feature.properties) );
+		      $('.map-and-list').css('flex','7');
+		      $('#properties').css('flex','4');
+		      $('#properties').html(propertiesHTML(e.layer.feature.properties));
 		    });
 
 		    map.addControl(geoList);
@@ -86,10 +107,48 @@ $(document).ready(function(){
 		    var farm_list = $('.geojson-list');    
 		    $('#list').append(farm_list); 
 
-		     console.log(geoList) 
-		     delete(geoList)  
 		});
 	}
+
+	function itemListHTML() {
+		return ('<h4>{Producto}</h4><div class="price-area">Precio: {Precio} €/kg<br>Area: {Area} m<sup>2</sup></div>'+
+			'<div class="subscribe"><a href="/fundings/new?farmland_id={Id}"><buttom class="btn btn-info">Subscribirse</buttom></a></div>');	
+	}
+
+	function propertiesHTML(properties) {
+		return ('<table class="table">'+
+							'<tr class="success">'+
+                '<td><h4>'+properties.Nombre+'</h4></td>'+
+                '<td><div><a href="/fundings/new?farmland_id='+properties.Id+'">'+
+                '<buttom class="btn btn-info">Subscribirse</buttom></a></div>'+
+          			'</td>'+
+              '</tr>'+
+							'<tr class="danger">'+
+                '<td><b>'+properties.Producto+'</b></td>'+
+                '<td>'+properties.Precio+' €/Kg'+
+          			'</td>'+
+              '</tr>'+
+            	'<tr class="warning">'+
+                '<td><b>Localización:</b></td>'+
+                '<td>'+properties.Comunidad+', '+ properties.Municipio+', '+properties.Region+
+          			'</td>'+
+              '</tr>'+
+              '<tr class="info">'+
+                '<td><b>Temporada:</b></td>'+
+                '<td>'+properties.InicioTemporada+' a '+ properties.FinalTemporada+
+          			'</td>'+
+              '</tr>'+
+              '<tr class="info">'+
+                '<td><b>Ecológico:</b></td>'+
+                '<td>'+ properties.Ecologico +
+          			'</td>'+
+              '</tr>'+
+						'</table>'
+						
+							);
+	}
+
+
 });
 
 

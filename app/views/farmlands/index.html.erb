@@ -1,12 +1,67 @@
 
+	<div class="filter">
+		<div class="form-inline">
 
-     <div id="list"></div>
-     <div id="map" ></div>
-     <div id="properties"></div>
+			<div class="form-group">
+		  	<label for="sel1">Producto:</label>
+			  <select class="form-control" id="product-chosen">
+			    <option value="all" >Todos</option>
+			    <option value="Tomate" >Tomate</option>
+			    <option value="Uva" >Uva</option>
+			    <option value="Esparrago" >Esparrago</option>
+			    <option value="Pimiento" >Pimiento</option>
+			    <option value="Lechuga" >Lechuga</option>
+			    <option value="Judia" >Judia</option>
+			    <option value="Alcachofa" >Alcachofa</option>
+			    <option value="Zanahora" >Zanahoria</option>
+			    <option value="Patata" >Patata</option>
+			  </select>
+			</div>
 
-     <script>
-      
+			<div class="form-group">
+				 <div class="checkbox">
+        	<label>
+          	<input id="eco-chosen" type="checkbox" value="true"> <b>Ecológico</b>
+        	</label>
+      	</div>
+			</div>
+
+			<div class="form-group">
+		  	<label >Ordenar por:</label>
+			  <select class="form-control" id="order-chosen">
+			    <option value="price">Precio</option>
+			    <option value="geom_area">Area</option>
+			  </select>
+			</div>
+			
+			<div class="form-group">
+		  
+			  <select class="form-control" id="order-direction">
+			    <option value="asc">Ascendente</option>
+			    <option value="desc">Descendente</option>
+			  </select>
+			</div>
+
+			<button id="btn-filter" class='btn btn-danger btn-lg buttom'>
+				Buscar
+			</button>
+		</div>
 
 
-  
+	</div>
+
+	
+	<div class="map-and-list">
+		<div id="list"></div>
+		<div id="map" ></div>
+	</div>
+
+	<div id="properties"></div>
+
+
+
+	      
+
+
+	  
 

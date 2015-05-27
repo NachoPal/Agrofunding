@@ -17,6 +17,7 @@ class MapsController < ApplicationController
 			unless(query_new == Rails.cache.read(:query_old))
 				Rails.cache.write(:query_old, query_new)
 				Rails.cache.clear(:ids)
+				Rails.cache.write(:ids, [])
 			end
 		end
 
@@ -27,7 +28,7 @@ class MapsController < ApplicationController
 			product = params[:product]
 		end
 
-		if(params[:eco] == "all")
+		if(params[:eco] == "all" || params[:eco] == "false")
 			eco = [true, false]
 		else
 			eco = params[:eco]
@@ -48,7 +49,7 @@ class MapsController < ApplicationController
 											boundarie_NE_lon +" "+ boundarie_NE_lat +"))"
 
 		map_polygon_object = RGeo::Geos.factory.parse_wkt(map_polygon_gis)
-
+		#binding.pry
 		farmlands = Farmland.where.not(farmer_id: nil).where(product: product, eco: eco)
 												.order(params[:order][0] => params[:order][1].to_sym)
 
@@ -72,9 +73,14 @@ class MapsController < ApplicationController
 			farm.geom_json["properties"]["Region"] = farm.region
 			farm.geom_json["properties"]["Area"] = farm.geom_area
 			farm.geom_json["properties"]["Precio"] = farm.price
-			farm.geom_json["properties"]["Inicio temporada"] = farm.period_start
-			farm.geom_json["properties"]["Final temporada"] = farm.period_end
+			farm.geom_json["properties"]["InicioTemporada"] = farm.period_start
+			farm.geom_json["properties"]["FinalTemporada"] = farm.period_end
 			farm.geom_json["properties"]["Id"] = farm.id
+			farm.geom_json["properties"]["Nombre"] = farm.name
+			farm.geom_json["properties"]["Descripcion"] = farm.description
+			farm.geom_json["properties"]["Farmer"] = farm.farmer.name + farm.farmer.surname
+			farm.geom_json["properties"]["Ecologico"] = farm.eco
+
 
 			features << farm.geom_json
 		end

@@ -1,6 +1,7 @@
 <section class="title">
 	
-	<div class="text"><h1><%= @title %></h1></div>
-	<div class="buttom"><%= link_to @buttom, @link%></div>
-
+	<div class="text"><%= @title %></div>
+	<div class="buttom-div">
+	<%= link_to "<div class='btn btn-info btn-lg buttom'>#{@buttom}</div>".html_safe, @link%>
+	</div>
 </section>

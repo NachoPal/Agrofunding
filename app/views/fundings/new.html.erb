@@ -1,12 +1,29 @@
-<%= form_for @funding do |f|%>
-	
-	<%=f.label :frecuency, "Frecuencia" %>
-	<%=f.text_field :frecuency %>
+<div class="sign_in_main">
+  
+    <div class="log-in">
 
-	<%=f.label :amount, "Cantidad(Kg)" %>
-	<%=f.text_field :amount %>
+			<h2 style="width: 45%; margin: 0 auto;">Subscripcion</h2><br>
+				<%= form_for @funding, :html => {:class => "form-group"} do |f|%>
+					
+					<div class="field">
+						<%=f.label :frecuency, "Frecuencia" %>
+						
+						<%= select_tag(params[:frecuency], options_for_select([['Mensual', "Mensual"], ['Quincenal', 'Quincenal'],
+																		['Trimestral', 'Trimestral'], ['Semestral', 'Semestral'],
+																		['Anual', 'Anual']]), autofocus: true , :class => 'form-control',:name => 'funding[frecuency]') %>
+						
+					</div>
 
-	<%=f.hidden_field :farmland_id, value: params[:farmland_id] %>
+					<div class="field">
+						<%=f.label :amount, "Cantidad(Kg)" %>
+						<%=f.text_field :amount, autofocus: true , :class => 'form-control' %>
+					</div></br>
+						<%=f.hidden_field :farmland_id, value: params[:farmland_id] %>
 
-	<%=f.submit "Suscribirse" %>
-<%end%>
+					<div style="margin-left: 33%;">
+						<%=f.submit "Suscribirse", :class => 'btn btn-success btn-lg' %>
+					</div>
+			<%end%>
+	</div>
+</div>
+
