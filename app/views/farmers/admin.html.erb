@@ -1,20 +1,45 @@
 
-<!-- <h1>Bienvenido <%= @farmer.name %>!</h1> -->
-	<ul>
-		<% @farms_owned.each do |farm| %>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<% @farms_owned.each_with_index do |farm, i| %>
+		<div class="panel panel-default">
+			<div class="accordion">
+		    <div class="panel-heading" role="tab" id="heading<%=translate_number(i)%>">
+		      <h2 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=translate_number(i)%>" 
+		        	aria-expanded="false" 
+		        	aria-controls="collapse<%=translate_number(i)%>" class="collapsed" style="display: block;">
+							<strong><%= farm.name %>
+						</a>
+		 			</h2>
+			      <br>
+			      <div>
+			      	<%=farm.product%>
+			      </div>
+			    </div>
+				</div>
 
-			<li>Tierra: <%= farm.product %> </li>
-				<ul>
-						<% farm.agrofunders.each do |agrofunder| %>
-							<li><%= agrofunder.name %> subscripcion: <%= agrofunder.frecuency_for(farm.id)%>
-									Te quedan <%= agrofunder.time_to_delivery_for(farm.id)%> 
-									dias para el envio de <%= agrofunder.amount_for(farm.id) %> Kilos
-							</li>
-						<%end%>
-				</ul>
-		<%end%>
-	</ul>
+			<div id="collapse<%=translate_number(i)%>" class="panel-collapse collapse" role="tabpanel" 
+    		aria-labelledby="heading<%=translate_number(i)%>">
+      	<div class="panel-body">
+          <div class="details table-responsive">
+            <table class="table table-striped table-hover">
 
+            	<% farm.agrofunders.each do |agrofunder| %>
+	            	<tr>
+									<td><b><%= agrofunder.name %> <%= agrofunder.surname %></b></td>
+									<td><%=agrofunder.frecuency_for(farm.id)%></td>
+									<td><%= agrofunder.time_to_delivery_for(farm.id)%> 
+											dias para el envio de <%= agrofunder.amount_for(farm.id) %> Kilos
+									</td>
+	              </tr>
+              <%end%>
+            </table>
+        	</div>
+      	</div>
+    	</div>
+    </div>
+  <%end%>
+</div>
 	
 
 

@@ -2,7 +2,7 @@ class FarmersController < ApplicationController
 	#after_filter "save_my_previous_url", only: [:admin]
 	#before_action "save_my_current_url"
 	before_action :authenticate_user!
-	
+	layout 'user_admin'
 	def show
 
 	end
@@ -11,7 +11,7 @@ class FarmersController < ApplicationController
 
 		@farmer = current_user
 		@title = "Tus Tierras"
-		@buttom = "Añade una tierra"
+		@buttom = "Registra una tierra"
 		@link = farmer_farmland_new_path
 
 		if(@farmer.farmlands)
