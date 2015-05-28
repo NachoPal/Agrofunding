@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   
   #API
   get "/maps" => "maps#index"
+  get"/maps/new" => "maps#new"
 
   resources :fundings, except: :index
 

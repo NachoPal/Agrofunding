@@ -94,4 +94,85 @@ class MapsController < ApplicationController
     render json: geo_json
 	end
 
+
+	def new
+
+		#INITIALIZE
+		farmlands_ids_retrieved = []
+		farmlands_in_boundary = []
+		features = []
+
+	#CHECK FIRST CALL OR NTH CALL
+		if(params[:init] == "true")
+				Rails.cache.write(:ids, [])
+				#Rails.cache.write(:query_old, [params[:product], params[:eco], params[:order]])
+			# else
+			# 	query_new = [params[:product], params[:eco], params[:order]]
+
+			# unless(query_new == Rails.cache.read(:query_old))
+			# 	#Rails.cache.write(:query_old, query_new)
+			# 	Rails.cache.clear(:ids)
+			# 	Rails.cache.write(:ids, [])
+			# end
+		end
+
+	#GET QUERY VALUES
+
+		boundarie_NE_lat = params[:b][0]
+		boundarie_NE_lon = params[:b][1]
+		boundarie_SW_lat = params[:b][2]
+		boundarie_SW_lon = params[:b][3]
+
+	#CREATE POLYGON WITH BOUNDARIES MAP
+		map_polygon_gis = "POLYGON(("+ boundarie_NE_lon +" "+ boundarie_NE_lat +", "+
+											boundarie_SW_lon +" "+ boundarie_NE_lat +", "+
+											boundarie_SW_lon +" "+ boundarie_SW_lat +", "+
+											boundarie_NE_lon +" "+ boundarie_SW_lat +", "+
+											boundarie_NE_lon +" "+ boundarie_NE_lat +"))"
+		
+		map_polygon_object = RGeo::Geos.factory.parse_wkt(map_polygon_gis)
+		#binding.pry
+		farmlands = Farmland.all
+
+	#CHECK IF FARM IS CONTAINED IN BOUNDARIES AND NOT RETRIEVED YET
+		farmlands.each do |farm|
+
+			unless(Rails.cache.read(:ids).include?(farm.id))
+
+				if(map_polygon_object.contains?(farm.lonlat))
+
+					farmlands_in_boundary << farm
+					farmlands_ids_retrieved << farm.id
+				end
+			end
+		end
+		#binding.pry
+	#FILL GEOJSON FEATURES WITH THE SUCCEEDED FARMS
+		farmlands_in_boundary.each do |farm|
+			
+			if (farm.farmer)
+				farm.geom_json["properties"]["Registrada"] = "Si";
+			else
+				farm.geom_json["properties"]["Registrada"] = "No";
+				farm.geom_json["properties"]["Id"] = farm.id
+				farm.geom_json["properties"]["Country"] = farm.country
+				farm.geom_json["properties"]["Municipality"] = farm.municipality
+				farm.geom_json["properties"]["Country"] = farm.country
+				farm.geom_json["properties"]["Region"] = farm.region
+
+			end
+			
+			features << farm.geom_json
+		end
+
+	#UPDATE RAILS CACHE WITH NEW RETRIEVED FARMS
+		Rails.cache.write(:ids, farmlands_ids_retrieved + Rails.cache.read(:ids))
+	
+	#SEND GEOJSON
+		geo_json = {type: "FeatureCollection", features: features}
+
+    render json: geo_json
+
+	end
+
 end

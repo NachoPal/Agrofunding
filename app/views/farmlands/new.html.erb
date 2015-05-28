@@ -1,32 +1,47 @@
 
-<%= form_for [@farmer, @farmland] do |f| %>
+<div class="map-and-list">
+		<div id="list">
+			<%= form_for [@farmer, @farmland] , :html => {:class => "form-group"}  do |f| %>
 
-	<div class="form_item">
-		<%= f.label :Nombre %>
-		<%= f.text_field :name %>
-	</div>
+				<div class="field">
+					<%= f.label :Nombre %>
+					<%= f.text_field :name, autofocus: true , :class => 'form-control'  %>
+				</div>
 
-	<div class="form_item">
-		<%= f.label :Product %>
-		<%= f.text_field :product %>
-	</div>
+				<div class="field">
+					<%= f.label :Product %>
+					<%= f.text_field :product, autofocus: true , :class => 'form-control'  %>
+				</div>
 
-	<div class="form_item">
-		<%= f.label :Precio_por_kilo_o_litro%>
-		<%= f.text_field :price %>
-	</div>
+				<div class="field">
+					<%= f.label :Precio_por_kilo_o_litro%>
+					<%= f.text_field :price, autofocus: true , :class => 'form-control'  %>
+				</div>
 
-	<div class="form_item">
-		<%= f.label :Fecha_inicio_temporada %>
-		<%= f.date_field :period_start, class: "date" %>
-	</div>
+				<div class="field">
+					<%= f.label :Fecha_inicio_temporada %>
+					<%= f.date_field :period_start, class: "date form-control" %>
+				</div>
 
-	<div class="form_item">
-		<%= f.label :Fecha_final_temporada%>
-		<%= f.date_field :period_end, class: "date" %>
-	</div>
+				<div class="field">
+					<%= f.label :Fecha_final_temporada%>
+					<%= f.date_field :period_end, class: "date form-control" %>
+				</div>
 
-	<div class="form_item">	
-		<%= f.submit 'Dar de alta' %> 
+				<div class="field" style="display: none;">
+					<%= f.label :id %>
+					<%= f.text_field :id, autofocus: true , :class => 'form-control'  %>
+				</div><br>
+
+				<div class="field">
+					<%= f.submit 'Dar de alta', :class => 'btn btn-success btn-lg' %>
+				</div>
+
+				
+
 	
-<%end%>
+			<%end%>
+		</div>
+
+		<div id="map" ></div>
+</div>

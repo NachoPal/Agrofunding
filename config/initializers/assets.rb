@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( maps.js )
 Rails.application.config.assets.precompile += %w( sites.js )
 Rails.application.config.assets.precompile += %w( sessions.js )
+Rails.application.config.assets.precompile += %w( map_new.js )

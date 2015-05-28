@@ -1,5 +1,7 @@
 class FarmlandsController < ApplicationController
-	layout 'farmlands'
+	layout 'farmlands', only: [:index]
+	layout 'farmlands_new', only: [:new]
+
 	before_action "save_my_previous_url", only: [:new]
 	def new
 
@@ -16,15 +18,25 @@ class FarmlandsController < ApplicationController
 	def create
 
 		@farmer = Farmer.find params[:id]
-		@farmland = @farmer.farmlands.new entry_params
+		
+		
 
+		@farmland = Farmland.find params[:farmland]["id"].to_i
+
+		@farmland.update_attributes entry_params
+
+		@farmland.farmer = @farmer
+	
 		if(@farmland.save)
 			flash[:notice] = "Tierra añadida correctamente"
-			redirect_to farmer_farmland_path(@farmer, @farmland)
+			redirect_to farmer_admin_path (@farmer)
 		else
 			flash[:error] = "Error al añadir la tierra"
+			render 'new'
 		end
-	end
+
+		
+	 end
 
 	def show
 
@@ -42,7 +54,7 @@ class FarmlandsController < ApplicationController
 
 		def entry_params
 
-			params.require(:farmland).permit(:name, :product, :price, :period_start, :period_end)
+			params.require(:farmland).permit(:id, :name, :product, :price, :period_start, :period_end)
 		end
 	
 end
