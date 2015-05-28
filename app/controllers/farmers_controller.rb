@@ -1,8 +1,9 @@
 class FarmersController < ApplicationController
-	#after_filter "save_my_previous_url", only: [:admin]
-	#before_action "save_my_current_url"
+	
 	before_action :authenticate_user!
+
 	layout 'user_admin'
+
 	def show
 
 	end
@@ -19,9 +20,7 @@ class FarmersController < ApplicationController
 			render 'admin'
 		else 
 			render 'admin_new_user'
-		end
-
-		
+		end	
 	end
 
 	def edit
@@ -30,6 +29,5 @@ class FarmersController < ApplicationController
 
 	def update
 
-	end
-	
+	end	
 end

@@ -18,5 +18,4 @@ class Agrofunder < User
 	def amount_for(id)
 		self.fundings.where(farmland_id: id).first.amount
 	end
-
 end

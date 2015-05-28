@@ -1,6 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+
   layout "landing"
   
    def update
@@ -15,11 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
       @user.update_attributes(agrofunder_params)
       redirect_to agrofunder_admin_path(@user)
     end
-
-         
-    # def update_resource(resource, params)
-    #   resource.update_without_password(params)
-    # end
   end
 
 

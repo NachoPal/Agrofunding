@@ -4,15 +4,10 @@ class Farmland < ActiveRecord::Base
 
 	has_many :fundings
 	has_many :agrofunders, -> { where type: "Agrofunder"}, class_name: "Agrofunder", through: :fundings
-	#has_many :agrofunders, -> { where type: "Agrofunder"}, class_name: "User", through: :fundings
 
 	def frecuency_for(id)
 		self.fundings.where(agrofunder_id: id).first.frecuency
 	end
-
-	# def price_for(id)
-	# 	self.fundings.where(agrofunder_id: id).first.price
-	# end
 
 	def amount_for(id)
 		self.fundings.where(agrofunder_id: id).first.amount

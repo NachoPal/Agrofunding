@@ -20,7 +20,6 @@ for i in 0..3000
   email = "user"+i.to_s+"@gmail.com"
   password = "12345678"
   password_confirmation = "12345678"
-  #avatar = gravatar_image_tag('spam@spam.com'.gsub('spam', 'mdeering'), :alt => 'Michael Deering')
 
   User.create(name: name, surname: surname, community: community, municipality: municipality, city: city, address: address,
               postal_code: postal_code, telephone: telephone, company: company, type: type, description: description,
@@ -30,14 +29,14 @@ end
 #========================= FARMLANDS ===================================
 
 factory = RGeo::GeoJSON::EntityFactory.instance
-#factory2 = RGeo::Cartesian.factory
+
 lonlat = 0
 shape_file = Dir['/Users/Nacho/Desktop/IRONHACK/PROJECTO/agrofunding/db/shpfiles/Mun001/*.shp']
 forbiden_usages = ["ZONA URBANA", "EDIFICACIONES", "FORESTAL",
                    "VIALES", "CORRIENTES Y SUP. DE AGUA", "IMPRODUCTIVOS"]
 
 RGeo::Shapefile::Reader.open(shape_file[0]) do |file|
-  #puts "File contains #{file.num_records} records."
+ 
   j=0
 
   file.each do |record|
@@ -60,7 +59,6 @@ RGeo::Shapefile::Reader.open(shape_file[0]) do |file|
    		coord[1] = coord_lat;
    		
    		if(i==0)
-   			#lonlat = factory2.point(coord_lat, coord_lon)
         lonlat = RGeo::Geographic.spherical_factory(:srid => 4326).point(coord_lon, coord_lat)
    		end
    	
@@ -115,11 +113,6 @@ RGeo::Shapefile::Reader.open(shape_file[0]) do |file|
         agrofunders.each do |agrofunder|
           agrofunders_id << agrofunder.id
         end
-
-        #agrofunder_id = agrofunders_id.sample
-
-        # index = rand(agrofunders_id.size/2)
-        # agrofunders_id_to_fund = (1..rand(agrofunders_id.size)).to_a[index..rand((agrofunders_id.size))]
         
         agrofunders_id.each do |id|
           if(rand(800) < 2)
@@ -144,5 +137,4 @@ RGeo::Shapefile::Reader.open(shape_file[0]) do |file|
   end
   file.rewind
   record = file.next
-  #puts "First record geometry was: #{record.geometry.as_text}"
 end

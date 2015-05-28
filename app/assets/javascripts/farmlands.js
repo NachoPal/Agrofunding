@@ -11,8 +11,6 @@ $(document).ready(function(){
 
  	}).addTo(map);
 
- //var marker = L.marker([41.976140, -1.640856]).addTo(map);
-
 	var styling = function(feature){
 
 	  switch (feature.properties.Producto) {
@@ -42,7 +40,7 @@ $(document).ready(function(){
 		SWlon = bounds._southWest.lng
 		NElat = bounds._northEast.lat
 		NElon = bounds._northEast.lng
-		//$('#list').empty();
+
 		APIcall(true, false);
   });
 

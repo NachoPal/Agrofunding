@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-
   get "/" => "sites#home", as: :root
 
   devise_for :users, skip: [:registration, :password],
@@ -35,5 +34,4 @@ Rails.application.routes.draw do
   get"/maps/new" => "maps#new"
 
   resources :fundings, except: :index
-
 end
