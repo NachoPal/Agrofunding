@@ -81,9 +81,6 @@ $(document).ready(function(){
 		    	geoLayer.addData(json);
 		    	$('#list').empty();
 		    }
-		    // map
-		    // .fitBounds( geoLayer.getBounds() )
-		    //.setMaxBounds( geoLayer.getBounds().pad(0.5) );
 
 		    var geoList = new L.Control.GeoJSONList(geoLayer,{
 		      listItemBuild: function(layer) {
@@ -145,8 +142,6 @@ $(document).ready(function(){
 						
 							);
 	}
-
-
 });
 
 

@@ -74,6 +74,7 @@ $(document).ready(function(){
 		      console.log(e.layer.feature.properties);
 		      console.log(e.layer.feature.properties.Id);
 		      $('#farmland_id').val((e.layer.feature.properties.Id).toString());
+		      alert("Tierra seleccionada");
 		    });
 
 		    $('.leaflet-bottom').css('display','none');

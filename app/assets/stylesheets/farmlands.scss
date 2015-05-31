@@ -29,7 +29,6 @@
 	display: flex;
 	flex: 11;
 	background: blue;
-	//transition: all 1s ease;
 
 	#list {
 		flex: 3;
@@ -41,13 +40,11 @@
 	#map {
 		flex: 7;
 		border-bottom: 1px solid black;
-		//background-color: yellow;
 	}
 }
 
 #properties {
 	flex: 0;
-	//transition: all 1s ease;
 }
 
 .leaflet-control-attribution {

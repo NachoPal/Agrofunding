@@ -3,9 +3,7 @@
 nav.top {
 	display: flex;
 	width: 100%;
-	//height: 70px;
 	box-sizing: border-box;
-	//background-color: #78AB46;
 	background-color: #5cb85c;
 	font-size: 3.5vh;
 	color: white;
@@ -52,26 +50,16 @@ nav.top {
 		}
 }
 
-// #log_in {
-// 	position: absolute;
-// 	bottom: 0;
-// 	right: 0;
-// 	height: 30px;
-// }
-
 //=============== TITLE =====================
 .title {
 	background-image: url('/pattern6.jpg');
 	flex: 1;
-	//padding-top: 3vh;
 
 	.text{
 		float: left;
 		width: 33%;
 		padding-left: 1vw;
 		font-size: 6.5vh;
-
-
 	}
 
 	.buttom-div {
@@ -89,11 +77,6 @@ nav.top {
 	}
 }
 
-// section#map {
-// 	flex: 4;
-// 	background-color: yellow;
-// 	//height:600px;
-// }
 
 
 

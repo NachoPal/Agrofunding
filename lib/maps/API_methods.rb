@@ -10,14 +10,14 @@ def initialize_call?
 	if(params[:init] == "true")
 					Rails.cache.write(:ids, [])
 					Rails.cache.write(:query_old, [params[:product], params[:eco], params[:order]])
-				else
-					query_new = [params[:product], params[:eco], params[:order]]
+	else
+		query_new = [params[:product], params[:eco], params[:order]]
 
-				unless(query_new == Rails.cache.read(:query_old))
-					Rails.cache.write(:query_old, query_new)
-					Rails.cache.clear(:ids)
-					Rails.cache.write(:ids, [])
-				end
+		unless(query_new == Rails.cache.read(:query_old))
+			Rails.cache.write(:query_old, query_new)
+			Rails.cache.clear(:ids)
+			Rails.cache.write(:ids, [])
+		end
 	end
 end
 

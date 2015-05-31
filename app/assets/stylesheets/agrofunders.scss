@@ -12,8 +12,6 @@
 }
 
 .panel-heading:hover {
-	//background-color:#dff0d8;
-	//background-color:#666;
 	background-color: rgba(255,170,0, 0.6);
 
 	a:link {
@@ -34,20 +32,3 @@
 	background-color: grey;
 	background-image: url('/pattern6.jpg');
 }
-
-// .content {
-// 	display: flex;
-// 	display: -webkit-flex;
-// 	flex-direction: column;
-// 	flex: 6;
-// }
-
-// .info {
-// 	flex: 20;
-// }
-
-// div#map { height: 400px; width: 70%; float:left;}
-// #list { height: 400px; width: 30%; float: left; overflow-y: scroll;}
-// #properties {clear:both;}
-// .leaflet-control-attribution{ display:none;}
-// .geojson-list-group{ width: 100%;}
